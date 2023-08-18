@@ -1,6 +1,6 @@
 package _03_Threaded_Greeting;
 
-public class ThreadedGreeting {
+public class ThreadedGreeting implements Runnable{
 	/*
 	 * The goal of this assignment is to create a chain of threads. Thread 1 will create Thread 2, 
 	 * Thread 2 will create Thread 3, Thread 3 will create Thread 4 and so on up to 50 threads.
@@ -23,7 +23,11 @@ public class ThreadedGreeting {
 	
 	//2. Give the ThreadedGreeter class a  member variable of the integer type and a constructor
 	//   to initialize the member variable to a custom value.
-	
+	int value;
+	ThreadedGreeting(int value){
+		this.value = value;
+		
+	}
 	//3. In the run method of the ThreadedGreeter class, print the message using the member variable as the thread number.
 	//   If the member integer is less than or equal to 50, create a new thread. 
 	//   Pass in a new object of the ThreadedGreeter class with the value of the member variable plus one.
@@ -33,7 +37,7 @@ public class ThreadedGreeting {
 	public static void main(String[] args) {
 		//5. Create the first thread and initialize it with an object of the ThreadedGreeter class.
 		//   The ThreadedGreeter object should be initialized with 1.
-		Thread t = new Thread(new ThreadedGreeter(1));
+		Thread t = new Thread(new ThreadedGreeting(1));
 		
 		//6. Start and join the thread. Did you get the required output?
 		t.start();
@@ -41,6 +45,17 @@ public class ThreadedGreeting {
 			t.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+		System.out.println("Hello from thread number "+value);
+		if(value < 50) {
+			Thread t = new Thread(new ThreadedGreeting(value+1));
+			t.start();
 		}
 	}
 }

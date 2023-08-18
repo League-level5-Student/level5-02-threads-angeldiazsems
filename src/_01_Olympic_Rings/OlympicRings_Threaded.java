@@ -17,14 +17,12 @@ public class OlympicRings_Threaded {
 		Robot rob3 = new Robot(800, 700);
 		Robot rob4 = new Robot(1000, 700);
 		Robot rob5 = new Robot(1200,700);
-		Graphics2D g = null;
-		g.drawOval(100, 100, 100, 100);
 		
 		Robot robo[] = {rob1, rob2, rob3, rob4, rob5};
 		for(Robot r : robo) {
 			r.penDown();
 			r.setRandomPenColor();
-			Thread r1 = new Thread(() -> r.draw(g));
+			Thread r1 = new Thread(() -> r.draw(g.drawOval(100, 100, 100, 100)));
 			r1.start();
 		}
 		

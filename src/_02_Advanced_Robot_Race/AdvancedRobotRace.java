@@ -30,16 +30,17 @@ public class AdvancedRobotRace {
 		robo[8].setX(750);
 		robo[9].setX(800);
 
-		
-		Random E = new Random();
-		for(int i = 0; i < robo.length; i++) {
-			while(robo[i].getY() > 30) {
-				Thread t = new Thread(()-> robo[i].move(E.nextInt(50)));
-			}
+		Random e = new Random();
+
+		for (Robot r : robo) {
+
+			Thread t = new Thread(() -> r.move(e.nextInt(50)));
+			t.start();
+			
 		}
-	
-		for (int e = 0; e < robo.length; e++) {
-			int f = robo[e].getY();
+
+		for (int s = 0; s < robo.length;) {
+			int f = robo[s].getY();
 			if (f < 30) {
 				System.out.println(f + " is the winner");
 			}
