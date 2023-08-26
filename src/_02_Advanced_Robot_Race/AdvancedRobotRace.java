@@ -30,19 +30,43 @@ public class AdvancedRobotRace {
 		robo[8].setX(750);
 		robo[9].setX(800);
 
-		Random e = new Random();
+		Random E = new Random();
+		
+		int i = 0;
+		
+		while(robo[i].getY()>30) {
+			Thread t0 = new Thread(()-> robo[0].move(E.nextInt(50)));
+			Thread t1 = new Thread(()-> robo[1].move(E.nextInt(50)));
+			Thread t2 = new Thread(()-> robo[2].move(E.nextInt(50)));
+			Thread t3 = new Thread(()-> robo[3].move(E.nextInt(50)));
+			Thread t4 = new Thread(()-> robo[4].move(E.nextInt(50)));
+			Thread t5 = new Thread(()-> robo[5].move(E.nextInt(50)));
+			Thread t6 = new Thread(()-> robo[6].move(E.nextInt(50)));
+			Thread t7 = new Thread(()-> robo[7].move(E.nextInt(50)));
+			Thread t8 = new Thread(()-> robo[8].move(E.nextInt(50)));
+			Thread t9 = new Thread(()-> robo[9].move(E.nextInt(50)));
+			
+			
+			
+			t0.start();
+			t1.start();
+			t2.start();
+			t3.start();
+			t4.start();
+			t5.start();
+			t6.start();
+			t7.start();
+			t8.start();
+			t9.start();
 
-		for (Robot r : robo) {
-
-			Thread t = new Thread(() -> r.move(e.nextInt(50)));
-			t.start();
+			
+			
 			
 		}
-
-		for (int s = 0; s < robo.length;) {
-			int f = robo[s].getY();
-			if (f < 30) {
-				System.out.println(f + " is the winner");
+		for(int e = 0; e < robo.length;e++) {
+			int f = robo[e].getY();
+			if(f < 30) {
+				System.out.println("robot "+e+" is the winner");
 			}
 		}
 

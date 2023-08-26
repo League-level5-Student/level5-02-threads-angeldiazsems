@@ -22,35 +22,32 @@ public class OlympicRings_Threaded {
 		for(Robot r : robo) {
 			r.penDown();
 			r.setRandomPenColor();
-			Thread r1 = new Thread(() -> r.setAngle(45));
-			r1.start();
-			Thread r2 = new Thread(() -> r.move(200));
-			r2.start();
-
-			Thread r3 = new Thread(() -> r.setAngle(45));
-			r3.start();
-
-			Thread r4 = new Thread(() -> r.move(200));
-			r4.start();
-
-			Thread r5 = new Thread(() -> r.setAngle(45));
-			r5.start();
-
-			Thread r6 = new Thread(() -> r.move(200));
-			r6.start();
-
-			Thread r7 = new Thread(() -> r.setAngle(45));
-			r7.start();
-
-			Thread r8 = new Thread(() -> r.move(200));
-			
-			r8.start();
+			r.setSpeed(50);
 		}
 		
-	
-
 		
-
+		Thread t = new Thread(()-> drawSquare(rob1));
+		t.start();
+		Thread t2 = new Thread(()-> drawSquare(rob2));
+		t2.start();
+		Thread t3 = new Thread(()-> drawSquare(rob3));
+		t3.start();
+		Thread t4 = new Thread(()-> drawSquare(rob4));
+		t4.start();
+		Thread t5 = new Thread(()-> drawSquare(rob5));
+		t5.start();
 		
 	}
+	
+	public static void drawSquare(Robot r) {
+		r.turn(45);
+		r.move(200);
+		r.turn(-90);
+		r.move(200);
+		r.turn(-45);
+		r.move(200);
+		r.turn(-45);
+		r.move(200);
+	}
+
 }
